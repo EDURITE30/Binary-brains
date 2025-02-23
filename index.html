@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Financial Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Login Page -->
+  <div id="login-page" class="page">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      
+      <label for="email">Email or Phone:</label>
+      <input type="text" id="email" required>
+      
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Profile Selection Page -->
+  <div id="profile-selection" class="page hidden">
+    <h2>Select Your Profile</h2>
+    <div class="profile-buttons">
+      <button id="student-btn">Student</button>
+      <button id="earning-person-btn">Earning Person</button>
+    </div>
+  </div>
+
+  <!-- Student Pages -->
+  <div id="student-app" class="page hidden">
+    <header>
+      <button id="logout-btn-student">Logout</button>
+    </header>
+    
+    <div id="student-pages">
+      <!-- Category Selection -->
+      <div id="student-category-selection" class="page active">
+        <h2>Select Financial Plan</h2>
+        <div class="profile-buttons">
+          <button id="daily-plan-btn">Daily Financial Plan</button>
+          <button id="monthly-plan-btn">Monthly Financial Plan</button>
+        </div>
+      </div>
+
+      <!-- Daily Financial Plan -->
+      <div id="daily-financial-plan" class="page hidden">
+        <header>
+          <button id="back-to-categories">Back</button>
+        </header>
+        
+        <div id="daily-pages">
+          <!-- Daily Income -->
+          <div id="daily-income" class="page active">
+            <h2>Daily Income</h2>
+            <form id="daily-income-form">
+              <label for="allowance">Allowance Received (₹):</label>
+              <input type="number" id="allowance" placeholder="ex: 200" required>
+              
+              <button type="submit">Next</button>
+            </form>
+          </div>
+
+          <!-- Daily Expenses -->
+          <div id="daily-expenses" class="page hidden">
+            <h2>Daily Expenses</h2>
+            <form id="daily-expenses-form">
+              <label for="date">Date:</label>
+              <input type="date" id="date" required>
+              
+              <label for="food">Food (₹):</label>
+              <input type="number" id="food" placeholder="ex: 50" required>
+              
+              <label for="transportation">Transportation (₹):</label>
+              <input type="number" id="transportation" placeholder="ex: 20" required>
+              
+              <label for="study-material">Study Material (₹):</label>
+              <input type="number" id="study-material" placeholder="ex: 30" required>
+              
+              <label for="entertainment">Entertainment (₹):</label>
+              <input type="number" id="entertainment" placeholder="ex: 10" required>
+              
+              <label for="others">Others (₹):</label>
+              <input type="number" id="others" placeholder="ex: 15" required>
+              
+              <button type="submit">Save</button>
+            </form>
+          </div>
+
+          <!-- Daily Summary -->
+          <div id="daily-summary" class="page hidden">
+            <h2>Daily Financial Summary</h2>
+            <div id="daily-output"></div>
+            <button id="weekly-summary-btn" class="center-button">Weekly Summary</button>
+          </div>
+
+          <!-- Weekly Summary -->
+          <div id="weekly-summary" class="page hidden">
+            <h2>Weekly Financial Summary</h2>
+            <table id="weekly-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Allowance</th>
+                  <th>Expenses</th>
+                  <th>Savings</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div id="weekly-totals">
+              <p>Total Allowance This Week: ₹<span id="total-allowance">0</span></p>
+              <p>Total Expenses This Week: ₹<span id="total-expenses">0</span></p>
+              <p>Total Savings This Week: ₹<span id="total-savings">0</span></p>
+            </div>
+            <button id="back-to-daily-plan" class="center-button">Back to Daily Plan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly Financial Plan -->
+      <div id="monthly-financial-plan" class="page hidden">
+        <header>
+          <button id="back-to-categories-monthly">Back</button>
+        </header>
+        
+        <div id="monthly-pages">
+          <!-- Personal Info -->
+          <div id="student-personal-info" class="page active">
+            <h2>Personal Information</h2>
+            <form id="student-personal-info-form">
+              <label for="student-age">Age:</label>
+              <input type="number" id="student-age" placeholder="ex: 20" required>
+              
+              <label for="student-email">Email ID:</label>
+              <input type="email" id="student-email" placeholder="ex: student@example.com" required>
+              
+              <button type="submit">Next</button>
+            </form>
+          </div>
+
+          <!-- Income Details -->
+          <div id="student-income-details" class="page hidden">
+            <h2>Income Details</h2>
+            <form id="student-income-form">
+              <label for="monthly-allowance">Monthly Allowance (₹):</label>
+              <input type="number" id="monthly-allowance" placeholder="ex: 10000" required>
+              
+              <label for="part-time-income">Part-Time Job Income (₹):</label>
+              <input type="number" id="part-time-income" placeholder="ex: 5000" required>
+              
+              <button type="submit">Next</button>
+            </form>
+          </div>
+
+          <!-- Expenses -->
+          <div id="student-expenses" class="page hidden">
+            <h2>Expenses</h2>
+            <form id="student-expenses-form">
+              <label for="food">Food (₹):</label>
+              <input type="number" id="food" placeholder="ex: 3000" required>
+              
+              <label for="transport">Transport (₹):</label>
+              <input type="number" id="transport" placeholder="ex: 1000" required>
+              
+              <label for="hostel-rent">Hostel/Rent (₹):</label>
+              <input type="number" id="hostel-rent" placeholder="ex: 4000" required>
+              
+              <label for="entertainment">Entertainment (₹):</label>
+              <input type="number" id="entertainment" placeholder="ex: 1000" required>
+              
+              <label for="shopping-travel">Shopping/Travel (₹):</label>
+              <input type="number" id="shopping-travel" placeholder="ex: 1500" required>
+              
+              <label for="emergency-fund">Emergency Fund (₹):</label>
+              <input type="number" id="emergency-fund" placeholder="ex: 500" required>
+              
+              <label for="future-investment">Future Investment (₹):</label>
+              <input type="number" id="future-investment" placeholder="ex: 1000" required>
+              
+              <button type="submit">Next</button>
+            </form>
+          </div>
+
+          <!-- Goals -->
+          <div id="student-goals" class="page hidden">
+            <h2>Goals</h2>
+            <form id="student-goals-form">
+              <label for="short-term-goal">Short-Term Goal:</label>
+              <input type="text" id="short-term-goal" placeholder="ex: Save ₹10,000 for vacation" required>
+              
+              <label for="long-term-goal">Long-Term Goal:</label>
+              <input type="text" id="long-term-goal" placeholder="ex: Build an emergency fund of ₹50,000" required>
+              
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+
+          <!-- Results -->
+          <div id="student-results" class="page hidden">
+            <h2>Budget and Suggestions</h2>
+            <div id="student-output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Earning Person App -->
+  <div id="earning-person-app" class="page hidden">
+    <header>
+      <button id="logout-btn-earning">Logout</button>
+    </header>
+    
+    <div id="earning-pages">
+      <!-- Personal Info -->
+      <div id="personal-info" class="page active">
+        <h2>Personal Information</h2>
+        <form id="personal-info-form">
+          <label for="age">Age:</label>
+          <input type="number" id="age" placeholder="ex: 30" required>
+          
+          <label for="gender">Gender:</label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          
+          <button type="submit">Next</button>
+        </form>
+      </div>
+
+      <!-- Income Details -->
+      <div id="income-details" class="page hidden">
+        <h2>Income Details</h2>
+        <form id="income-form">
+          <label for="monthly-income">Monthly Income (₹):</label>
+          <input type="number" id="monthly-income" placeholder="ex: 50000" required>
+          
+          <label for="additional-income">Additional Income (₹):</label>
+          <input type="number" id="additional-income" placeholder="ex: 5000" required>
+          
+          <button type="submit">Next</button>
+        </form>
+      </div>
+
+      <!-- Expenses -->
+      <div id="expenses" class="page hidden">
+        <h2>Expenses</h2>
+        <form id="expenses-form">
+          <label for="rent">Rent/Mortgage (₹):</label>
+          <input type="number" id="rent" placeholder="ex: 10000" required>
+          
+          <label for="groceries">Groceries (₹):</label>
+          <input type="number" id="groceries" placeholder="ex: 3000" required>
+          
+          <label for="utilities">Utilities (₹):</label>
+          <input type="number" id="utilities" placeholder="ex: 1500" required>
+          
+          <button type="submit">Next</button>
+        </form>
+      </div>
+
+      <!-- Savings and Investments -->
+      <div id="savings-investments" class="page hidden">
+        <h2>Savings and Investments</h2>
+        <form id="savings-form">
+          <label for="savings">Monthly Savings (₹):</label>
+          <input type="number" id="savings" placeholder="ex: 5000" required>
+          
+          <label for="investments">Monthly Investments (₹):</label>
+          <input type="number" id="investments" placeholder="ex: 3000" required>
+          
+          <button type="submit">Next</button>
+        </form>
+      </div>
+
+      <!-- Tax Information -->
+      <div id="tax-information" class="page hidden">
+        <h2>Tax Information</h2>
+        <form id="tax-form">
+          <label for="section-80c">Investments under Section 80C (₹):</label>
+          <input type="number" id="section-80c" placeholder="ex: 150000" required>
+          
+          <label for="section-80d">Medical Insurance Premium under Section 80D (₹):</label>
+          <input type="number" id="section-80d" placeholder="ex: 25000" required>
+          
+          <label for="home-loan-interest">Home Loan Interest Deduction (₹):</label>
+          <input type="number" id="home-loan-interest" placeholder="ex: 200000" required>
+          
+          <button type="submit">Next</button>
+        </form>
+      </div>
+
+      <!-- Financial Goals -->
+      <div id="financial-goals" class="page hidden">
+        <h2>Financial Goals</h2>
+        <form id="goals-form">
+          <label for="short-term-goal">Short-Term Goal:</label>
+          <input type="text" id="short-term-goal" placeholder="ex: Save ₹50,000 for vacation" required>
+          
+          <label for="long-term-goal">Long-Term Goal:</label>
+          <input type="text" id="long-term-goal" placeholder="ex: Buy a house in 10 years" required>
+          
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="page hidden">
+        <h2>Budget and Financial Plan</h2>
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
